@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IdFix</RootNamespace>
     <AssemblyName>IdFix</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -82,7 +82,6 @@
   <PropertyGroup>
     <ApplicationIcon>IDFixIcon.ico</ApplicationIcon>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System">
@@ -112,7 +111,6 @@
     <Reference Include="System.Data">
       <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll</HintPath>
     </Reference>
-
     <Reference Include="System.Drawing">
       <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll</HintPath>
     </Reference>
@@ -226,7 +224,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml">
       <SubType>Designer</SubType>
