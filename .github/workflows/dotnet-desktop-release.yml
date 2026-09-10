@@ -1,0 +1,54 @@
+name: .NET Core Desktop - Build and Release
+
+on:
+  push:
+    tags: [ "v*" ]
+
+permissions:
+  contents: write
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+    env:
+      Solution_Name: src\IdFix.sln
+      Build_Platform: x64
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore the solution
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration /p:Platform=$env:Build_Platform
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Build the solution
+      run: msbuild $env:Solution_Name /m /p:Configuration=$env:Configuration /p:Platform=$env:Build_Platform
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Package release binaries
+      if: matrix.configuration == 'Release'
+      run: Compress-Archive -Path "src/IdFix/bin/Release/x64/*" -DestinationPath "IdFix-${{ github.ref_name }}-x64.zip"
+
+    - name: Publish GitHub release
+      if: matrix.configuration == 'Release'
+      uses: softprops/action-gh-release@v2
+      with:
+        files: IdFix-${{ github.ref_name }}-x64.zip
+        generate_release_notes: true
