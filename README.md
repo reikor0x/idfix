@@ -1,5 +1,7 @@
+[![.NET Core Desktop - Build](https://github.com/reikor0x/idfix/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/reikor0x/idfix/actions/workflows/dotnet-desktop.yml)
 
-# ⚠️ IdFix has been deprecated
+
+# ⚠️ Original IdFix has been deprecated, this is my fork
 
 > **This project has been deprecated and is longer supported as of June 30, 2026.**
 
